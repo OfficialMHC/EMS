@@ -20257,8 +20257,9 @@ a.fc-more:hover {
     }
     .app-page-title .page-title-heading,
     .app-page-title .page-title-wrapper {
-        margin: 0 auto;
-        display: block;
+        position: relative;
+        display: flex;
+        align-items: center;
     }
     .app-page-title .page-title-actions {
         margin: 15px auto 0;

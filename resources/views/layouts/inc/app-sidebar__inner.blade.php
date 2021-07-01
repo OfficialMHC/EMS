@@ -1,7 +1,7 @@
 <div class="app-sidebar__inner">
     <ul class="vertical-nav-menu">
         <li class="mt-5">
-            <a href="index.html" class="mm-active">
+            <a href="{{ route('home') }}" class="{{ Request::is('home') ? 'mm-active' : '' }}">
                 <i class="metismenu-icon bx bx-tachometer"></i>
                 Dashboard
             </a>
@@ -54,7 +54,7 @@
                 </li>
             </ul>
         </li>
-        <li>
+        <li class="{{ Request::is('users*') ? 'mm-active' : '' }}">
             <a href="#">
                 <i class="metismenu-icon bx bx-user"></i>
                 User Management
@@ -66,7 +66,7 @@
                         <i class="metismenu-icon"></i>
                         Permission
                     </a>
-                    <a href="{{ route('users.index') }}">
+                    <a href="{{ route('users.index') }}" class="{{ Request::is('users*') ? 'mm-active' : '' }}">
                         <i class="metismenu-icon"></i>
                         User
                     </a>
