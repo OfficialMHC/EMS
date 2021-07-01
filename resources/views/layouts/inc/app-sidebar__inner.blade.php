@@ -66,7 +66,7 @@
                         <i class="metismenu-icon"></i>
                         Permission
                     </a>
-                    <a href="elements-buttons-standard.html">
+                    <a href="{{ route('users.index') }}">
                         <i class="metismenu-icon"></i>
                         User
                     </a>
