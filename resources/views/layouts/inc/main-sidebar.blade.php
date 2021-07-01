@@ -28,7 +28,13 @@
                     </li>
                 </ul>
             </li>
-            <li class="{{ Request::is('employee*') ? 'active' : '' }} treeview">
+            <li class="
+                @if(Request::is('departments*'))
+                {{ Request::is('departments*') ? 'active' : '' }}
+                @elseif(Request::is('countries*'))
+                {{ Request::is('countries*') ? 'active' : '' }}
+                @endif
+            treeview">
                 <a href="#">
                     <i class="fa fa-gears"></i> <span>System Management</span>
                     <span class="pull-right-container">
@@ -36,25 +42,25 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ Request::is('employee*') ? 'active' : '' }}">
+                    <li class="{{ Request::is('departments*') ? 'active' : '' }}">
                         <a href="">
                             <i class="fa fa-circle-o"></i>
                             Department
                         </a>
                     </li>
-                    <li class="{{ Request::is('employee*') ? 'active' : '' }}">
-                        <a href="">
+                    <li class="{{ Request::is('countries*') ? 'active' : '' }}">
+                        <a href="{{ route('countries.index') }}">
                             <i class="fa fa-circle-o"></i>
                             Country
                         </a>
                     </li>
-                    <li class="{{ Request::is('employee*') ? 'active' : '' }}">
+                    <li class="{{ Request::is('states*') ? 'active' : '' }}">
                         <a href="">
                             <i class="fa fa-circle-o"></i>
                             State
                         </a>
                     </li>
-                    <li class="{{ Request::is('employee*') ? 'active' : '' }}">
+                    <li class="{{ Request::is('cities*') ? 'active' : '' }}">
                         <a href="">
                             <i class="fa fa-circle-o"></i>
                             City
