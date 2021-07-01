@@ -47,11 +47,11 @@
                                 <td>{{ $user->email }}</td>
                                 <td>
                                     <div class="btn-group">
-                                        <a class="btn btn-sm mr-2 rounded btn-light" href="{{ route('users.edit', $user->id) }}"><i class='fa fa-pencil-alt'></i></a>
+                                        <a class="btn btn-sm" href="{{ route('users.edit', $user->id) }}"><i class='fa fa-edit'></i></a>
                                         <form action="{{ route('users.destroy', $user->id) }}" method="post">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="btn btn-sm rounded btn-light"><i class='fa fa-trash'></i></button>
+                                            <button class="btn btn-sm"><i class='fa fa-trash'></i></button>
                                         </form>
                                     </div>
                                 </td>
