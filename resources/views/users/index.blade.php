@@ -51,8 +51,8 @@
                                     <td>{{ $user->email }}</td>
                                     <td>
                                         <div class="btn-group">
-                                            <a class="btn" href="" style="margin-right: -15px"><i class='fa fa-edit' ></i></a>
-                                            <a class="btn" href=""><i class='fa fa-trash' ></i></a>
+                                            <a class="btn btn-sm mr-2 rounded btn-light" href="{{ route('users.edit', $user->id) }}"><i class='fa fa-pencil-alt'></i></a>
+                                            <a class="btn btn-sm rounded btn-light" href=""><i class='fa fa-trash'></i></a>
                                         </div>
                                     </td>
                                 </tr>

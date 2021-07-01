@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Users Create')
+@section('title', 'Create User')
 @section('content')
     <div class="app-page-title">
         <div class="page-title-wrapper">
@@ -70,7 +70,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="email" class="col-md-3 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                <label for="email" class="col-md-3 col-form-label text-md-right">{{ __('E-Mail') }}</label>
 
                                 <div class="col-md-9">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
