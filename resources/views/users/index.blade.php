@@ -13,15 +13,21 @@
         </div>
     </div>
     <div class="container">
-        <div class="row justify-content-center">
+        <div>
+            @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session('message') }}
+                </div>
+            @endif
+        </div>
+        <div class="row justify-content-center mb-4">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <button class="btn btn-primary float-right">
+                        <a href="{{ route('users.create') }}" class="btn btn-primary">
                             <i class="fa fa-plus"></i>
-                        </button>
+                        </a>
                     </div>
-
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="mb-0 table table-striped table-bordered table-hover">
