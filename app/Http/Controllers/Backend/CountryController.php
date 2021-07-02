@@ -12,7 +12,7 @@ class CountryController extends Controller
 {
     public function index()
     {
-        $countries = Country::all();
+        $countries = Country::get();
         return view('countries.index', compact('countries'));
     }
 

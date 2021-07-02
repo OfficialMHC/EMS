@@ -35,6 +35,8 @@
                 {{ Request::is('countries*') ? 'active' : '' }}
                 @elseif(Request::is('states*'))
                 {{ Request::is('states*') ? 'active' : '' }}
+                @elseif(Request::is('cities*'))
+                {{ Request::is('cities*') ? 'active' : '' }}
                 @endif
             treeview">
                 <a href="#">
@@ -63,7 +65,7 @@
                         </a>
                     </li>
                     <li class="{{ Request::is('cities*') ? 'active' : '' }}">
-                        <a href="">
+                        <a href="{{ route('cities.index') }}">
                             <i class="fa fa-circle-o"></i>
                             City
                         </a>
