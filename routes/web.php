@@ -36,4 +36,4 @@ Route::match(['get', 'post'], 'users/{user}/change-password', [ChangePasswordCon
 
 Route::get('{any}', function () {
     return view('employees.index');
-})->where('{any}', '.*');
+})->where('any', '.*');

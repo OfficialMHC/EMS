@@ -1,0 +1,193 @@
+<template>
+    <div>
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>Create Employee</h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-users"></i> Employee Management</a></li>
+                <li class="active">Employee</li>
+            </ol>
+        </section>
+
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6">
+                                    <h3 class="box-title"><i class="fa fa-pencil"></i> Create Employee</h3>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 text-right">
+                                    <router-link :to="{name: 'EmployeesIndex'}"><i class="fa fa-long-arrow-left"></i> Back to list</router-link>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- form start -->
+                        <form class="form-horizontal" method="post" action="">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label for="first_name" class="col-sm-2 control-label">First Name</label>
+                                    <div class="col-sm-10">
+                                        <input id="first_name" type="text" class="form-control" name="first_name" value="" required autocomplete="name" autofocus>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="middle_name" class="col-sm-2 control-label">Middle Name</label>
+                                    <div class="col-sm-10">
+                                        <input id="middle_name" type="text" class="form-control" name="middle_name" value="" required autocomplete="name" autofocus>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="last_name" class="col-sm-2 control-label">Last Name</label>
+                                    <div class="col-sm-10">
+                                        <input id="last_name" type="text" class="form-control" name="last_name" value="" required autocomplete="name" autofocus>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="department_id" class="col-sm-2 control-label">Department</label>
+                                    <div class="col-sm-10">
+                                        <select v-model="form.department_id" @change="getDepartments()" name="department_id" id="department_id" class="form-control" style="width: 100%">
+                                            <option value="" selected disabled>--- Select Department ---</option>
+                                            <option v-for="department in departments" :key="department.id" :value="department.id">{{ department.department_name }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="address" class="col-sm-2 control-label">Address</label>
+                                    <div class="col-sm-10">
+                                        <textarea name="address" id="address" class="form-control" rows="2"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="country_id" class="col-sm-2 control-label">Country</label>
+                                    <div class="col-sm-10">
+                                        <select v-model="form.country_id" @change="getStates()" name="country_id" id="country_id" class="form-control" style="width: 100%">
+                                            <option value="" selected disabled>--- Select Country ---</option>
+                                            <option v-for="country in countries" :key="country.id" :value="country.id">{{ country.country_name }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="state_id" class="col-sm-2 control-label">State</label>
+                                    <div class="col-sm-10">
+                                        <select v-model="form.state_id" @change="getCities()" name="state_id" id="state_id" class="form-control" style="width: 100%">
+                                            <option value="" selected disabled>--- Select State ---</option>
+                                            <option v-for="state in states" :key="state.id" :value="state.id">{{ state.state_name }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="city_id" class="col-sm-2 control-label">City</label>
+                                    <div class="col-sm-10">
+                                        <select v-model="form.city_id" name="city_id" id="city_id" class="form-control" style="width: 100%">
+                                            <option value="" selected disabled>--- Select City ---</option>
+                                            <option v-for="city in cities" :key="city.id" :value="city.id">{{ city.city_name }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="zip_code" class="col-sm-2 control-label">ZIP Code</label>
+                                    <div class="col-sm-10">
+                                        <input id="zip_code" type="text" class="form-control" name="zip_code" value="" required autocomplete="zip_code" autofocus>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="date_of_birth" class="col-sm-2 control-label">Date of Birth</label>
+                                    <div class="col-sm-10">
+                                        <datepicker input-class="form-control" name="date_of_birth" id="date_of_birth"></datepicker>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="date_hired" class="col-sm-2 control-label">Date Hired</label>
+                                    <div class="col-sm-10">
+                                        <datepicker input-class="form-control" name="date_hired" id="date_hired"></datepicker>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <a href="" class="btn btn-default">Cancel</a>
+                                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                            </div>
+                            <!-- /.box-footer -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</template>
+
+<script>
+import Datepicker from 'vuejs-datepicker';
+export default {
+    components: {
+        Datepicker
+    },
+    data() {
+        return {
+            departments: [],
+            countries: [],
+            states: [],
+            cities: [],
+            form: {
+                first_name: '',
+                middle_name: '',
+                last_name: '',
+                department_id: '',
+                address: '',
+                country_id: '',
+                state_id: '',
+                city_id: '',
+                zip_code: '',
+                date_of_birth: '',
+                date_hired: '',
+            }
+        }
+    },
+    created() {
+        this.getCountries()
+        this.getDepartments()
+    },
+    methods: {
+        getDepartments() {
+            axios.get('/api/employees/departments')
+                .then(res => {
+                    this.departments = res.data
+                }).catch(error => {
+                console.log(console.error)
+            })
+        },
+        getCountries() {
+            axios.get('/api/employees/countries')
+                .then(res => {
+                    this.countries = res.data
+                }).catch(error => {
+                    console.log(console.error)
+            })
+        },
+        getStates() {
+            axios.get('/api/employees/'+this.form.country_id+'/states')
+                .then(res => {
+                    this.states = res.data
+                }).catch(error => {
+                console.log(console.error)
+            })
+        },
+        getCities() {
+            axios.get('/api/employees/'+this.form.state_id+'/cities')
+                .then(res => {
+                    this.cities = res.data
+                }).catch(error => {
+                console.log(console.error)
+            })
+        }
+    }
+}
+</script>
+
+<style>
+
+</style>
