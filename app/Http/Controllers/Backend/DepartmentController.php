@@ -43,25 +43,14 @@ class DepartmentController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Department $department)
     {
-        //
+        return view('departments.edit', compact('department'));
     }
 
     /**
@@ -71,9 +60,13 @@ class DepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DepartmentStoreRequest $request, Department $department)
     {
-        //
+        $department->update([
+            'department_name' => $request->department_name,
+            'status' => $request->status,
+        ]);
+        return redirect()->route('departments.index')->with('message', 'Department Updated Successfully!');
     }
 
     /**
