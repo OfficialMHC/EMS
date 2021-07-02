@@ -26,6 +26,7 @@ class CountryUpdateRequest extends FormRequest
         return [
             'country_code' => ['required', 'min:3'],
             'country_name' => ['required'],
+            'status' => ['required'],
         ];
     }
 }
