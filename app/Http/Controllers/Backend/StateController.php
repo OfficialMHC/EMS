@@ -67,7 +67,8 @@ class StateController extends Controller
     {
         $state->update([
             'country_id' => $request->country_id,
-            'state_name' => $request->state_name
+            'state_name' => $request->state_name,
+            'status' => $request->status,
         ]);
         return redirect()->route('states.index')->with('message', 'State Updated Successfully!');
     }
