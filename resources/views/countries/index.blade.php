@@ -43,6 +43,7 @@
                                     <th>ID</th>
                                     <th>Country Code</th>
                                     <th>Country Name</th>
+                                    <th>Status</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -53,6 +54,13 @@
                                         <th scope="row">{{ $country->id }}</th>
                                         <td>{{ $country->country_code }}</td>
                                         <td>{{ $country->country_name }}</td>
+                                        <td>
+                                            @if($country->status == 1)
+                                                <small class="label label-success">Active</small>
+                                            @else
+                                                <small class="label label-danger">Inctive</small>
+                                            @endif
+                                        </td>
                                         <td>
                                             <a class="btn btn-xs btn-warning" href="{{ route('countries.edit', $country->id) }}"><i class='fa fa-edit'></i></a>
                                         </td>
@@ -71,6 +79,7 @@
                                     <th>ID</th>
                                     <th>Country Code</th>
                                     <th>Country Name</th>
+                                    <th>Status</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
