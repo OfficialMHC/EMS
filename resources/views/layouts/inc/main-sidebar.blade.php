@@ -12,7 +12,7 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li class="{{ Request::is('employee*') ? 'active' : '' }} treeview">
+            <li class="{{ Request::is('employees*') ? 'active' : '' }} treeview">
                 <a href="#">
                     <i class="fa fa-users"></i> <span>Employee Management</span>
                     <span class="pull-right-container">
@@ -20,8 +20,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ Request::is('employee*') ? 'active' : '' }}">
-                        <a href="index.html">
+                    <li class="{{ Request::is('employees*') ? 'active' : '' }}">
+                        <a href="/employees">
                             <i class="fa fa-circle-o"></i>
                             Employee
                         </a>
