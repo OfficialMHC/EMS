@@ -28,7 +28,7 @@ class StateController extends Controller
      */
     public function create()
     {
-        $countries = Country::all();
+        $countries = Country::where('status', 1)->all();
         return view('states.create', compact('countries'));
     }
 
@@ -52,7 +52,7 @@ class StateController extends Controller
      */
     public function edit(State $state)
     {
-        $countries = Country::all();
+        $countries = Country::where('status', 1)->all();
         return view('states.edit', compact('state', 'countries'));
     }
 
