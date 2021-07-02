@@ -17,7 +17,7 @@ class StateController extends Controller
      */
     public function index()
     {
-        $states = State::all();
+        $states = State::get();
         return view('states.index', compact('states'));
     }
 
@@ -28,7 +28,7 @@ class StateController extends Controller
      */
     public function create()
     {
-        $countries = Country::where('status', 1)->all();
+        $countries = Country::where('status', 1)->get();
         return view('states.create', compact('countries'));
     }
 
@@ -52,7 +52,7 @@ class StateController extends Controller
      */
     public function edit(State $state)
     {
-        $countries = Country::where('status', 1)->all();
+        $countries = Country::where('status', 1)->get();
         return view('states.edit', compact('state', 'countries'));
     }
 
