@@ -45,6 +45,7 @@
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Email</th>
+                                    <th>Status</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>
@@ -57,6 +58,13 @@
                                         <td>{{ $user->first_name }}</td>
                                         <td>{{ $user->last_name }}</td>
                                         <td>{{ $user->email }}</td>
+                                        <td>
+                                            @if($user->status == 1)
+                                                <small class="label label-success">Active</small>
+                                            @else
+                                                <small class="label label-danger">Inctive</small>
+                                            @endif
+                                        </td>
                                         <td>
                                             <a class="btn btn-xs btn-warning" href="{{ route('users.edit', $user->id) }}"><i class='fa fa-edit'></i></a>
                                         </td>
@@ -77,6 +85,7 @@
                                     <th>First Name</th>
                                     <th>Last Name</th>
                                     <th>Email</th>
+                                    <th>Status</th>
                                     <th>Edit</th>
                                     <th>Delete</th>
                                 </tr>

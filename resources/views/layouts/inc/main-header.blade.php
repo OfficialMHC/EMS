@@ -24,7 +24,7 @@
                         <!-- The user image in the navbar-->
                         <img src="{{ asset('assets/img/default.jpg') }}" class="user-image" alt="User Image">
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs">Alexander Pierce</span>
+                        <span class="hidden-xs">{{ auth()->user()->username }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->

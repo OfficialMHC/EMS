@@ -82,6 +82,16 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="status" class="col-sm-2 control-label">Status</label>
+
+                                <div class="col-sm-10">
+                                    <select name="status" id="status" class="form-control select2" style="width: 100%" required>
+                                        <option value="1" {{ $user->status == 1 ? 'selected' : '' }}>Active</option>
+                                        <option value="0" {{ $user->status == 0 ? 'selected' : '' }}>Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <!-- /.box-body -->
                         <div class="box-footer">
