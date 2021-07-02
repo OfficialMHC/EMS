@@ -20,9 +20,7 @@
                                     <h3 class="box-title" style="padding-top: 6px"><i class="fa fa-search"></i> View Employee List</h3>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 text-right">
-                                    <a href="" class="btn btn-sm btn-primary">
-                                        <i class="fa fa-plus"></i>
-                                    </a>
+                                    <router-link :to="{name: 'EmployeesCreate'}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></router-link>
                                 </div>
                             </div>
                         </div>
