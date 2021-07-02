@@ -47,7 +47,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="{{ Request::is('departments*') ? 'active' : '' }}">
-                        <a href="">
+                        <a href="{{ route('departments.index') }}">
                             <i class="fa fa-circle-o"></i>
                             Department
                         </a>
