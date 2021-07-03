@@ -42,15 +42,20 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                    <tr v-for="employee in employees" :key="employee.id">
+                                        <th scope="row">{{ employee.id }}</th>
+                                        <td>
+                                            {{ employee.first_name }} {{ employee.middle_name }} {{ employee.last_name }}
+                                        </td>
+                                        <td>{{ employee.department.department_name }}</td>
+                                        <td>
+                                            {{ employee.address }}, {{ employee.zip_code }}, {{ employee.city.city_name }},
+                                            <br>
+                                            {{ employee.state.state_name }}, {{ employee.country.country_name }}
+                                        </td>
+                                        <td>{{ employee.date_of_birth }}</td>
+                                        <td>{{ employee.date_hired }}</td>
+                                        <td>{{ employee.status }}</td>
                                         <td>
                                             <a class="btn btn-xs btn-warning" href=""><i class='fa fa-edit'></i></a>
                                         </td>
@@ -58,7 +63,6 @@
                                             <a class="btn btn-xs btn-danger" href=""><i class='fa fa-trash'></i></a>
                                         </td>
                                     </tr>
-
                                     </tbody>
                                     <tfoot>
                                     <tr>
@@ -87,7 +91,24 @@
 
 <script>
     export default {
-
+        data() {
+            return {
+                employees: []
+            }
+        },
+        created() {
+            this.getEmployees();
+        },
+        methods: {
+            getEmployees() {
+                axios.get('/api/employees')
+                    .then(res => {
+                        this.employees = res.data.data
+                    }).catch(error => {
+                        console.log(error);
+                })
+            }
+        }
     }
 </script>
 
