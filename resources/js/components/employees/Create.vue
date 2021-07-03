@@ -25,30 +25,30 @@
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form class="form-horizontal" method="post" action="">
+                        <form @submit.prevent="storeEmployee()" class="form-horizontal">
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="first_name" class="col-sm-2 control-label">First Name</label>
                                     <div class="col-sm-10">
-                                        <input id="first_name" type="text" class="form-control" name="first_name" value="" required autocomplete="name" autofocus>
+                                        <input v-model="form.first_name" id="first_name" type="text" class="form-control" name="first_name" required autocomplete="name" autofocus>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="middle_name" class="col-sm-2 control-label">Middle Name</label>
                                     <div class="col-sm-10">
-                                        <input id="middle_name" type="text" class="form-control" name="middle_name" value="" required autocomplete="name" autofocus>
+                                        <input v-model="form.middle_name" id="middle_name" type="text" class="form-control" name="middle_name" required autocomplete="name" autofocus>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="last_name" class="col-sm-2 control-label">Last Name</label>
                                     <div class="col-sm-10">
-                                        <input id="last_name" type="text" class="form-control" name="last_name" value="" required autocomplete="name" autofocus>
+                                        <input v-model="form.last_name" id="last_name" type="text" class="form-control" name="last_name" required autocomplete="name" autofocus>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="department_id" class="col-sm-2 control-label">Department</label>
                                     <div class="col-sm-10">
-                                        <select v-model="form.department_id" @change="getDepartments()" name="department_id" id="department_id" class="form-control" style="width: 100%">
+                                        <select v-model="form.department_id" @change="getDepartments()" name="department_id" id="department_id" class="form-control" style="width: 100%" required>
                                             <option value="" selected disabled>--- Select Department ---</option>
                                             <option v-for="department in departments" :key="department.id" :value="department.id">{{ department.department_name }}</option>
                                         </select>
@@ -57,7 +57,7 @@
                                 <div class="form-group">
                                     <label for="address" class="col-sm-2 control-label">Address</label>
                                     <div class="col-sm-10">
-                                        <textarea name="address" id="address" class="form-control" rows="2"></textarea>
+                                        <textarea v-model="form.address" name="address" id="address" class="form-control" rows="2"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -90,19 +90,19 @@
                                 <div class="form-group">
                                     <label for="zip_code" class="col-sm-2 control-label">ZIP Code</label>
                                     <div class="col-sm-10">
-                                        <input id="zip_code" type="text" class="form-control" name="zip_code" value="" required autocomplete="zip_code" autofocus>
+                                        <input v-model="form.zip_code" id="zip_code" type="text" class="form-control" name="zip_code" value="" required autocomplete="zip_code" autofocus>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="date_of_birth" class="col-sm-2 control-label">Date of Birth</label>
                                     <div class="col-sm-10">
-                                        <datepicker input-class="form-control" name="date_of_birth" id="date_of_birth"></datepicker>
+                                        <datepicker v-model="form.date_of_birth" input-class="form-control" name="date_of_birth" id="date_of_birth"></datepicker>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="date_hired" class="col-sm-2 control-label">Date Hired</label>
                                     <div class="col-sm-10">
-                                        <datepicker input-class="form-control" name="date_hired" id="date_hired"></datepicker>
+                                        <datepicker v-model="form.date_hired" input-class="form-control" name="date_hired" id="date_hired"></datepicker>
                                     </div>
                                 </div>
                             </div>
@@ -122,6 +122,7 @@
 
 <script>
 import Datepicker from 'vuejs-datepicker';
+import moment from 'moment';
 export default {
     components: {
         Datepicker
@@ -148,8 +149,8 @@ export default {
         }
     },
     created() {
-        this.getCountries()
-        this.getDepartments()
+        this.getCountries();
+        this.getDepartments();
     },
     methods: {
         getDepartments() {
@@ -183,8 +184,30 @@ export default {
                 }).catch(error => {
                 console.log(console.error)
             })
+        },
+        storeEmployee() {
+            axios.post('/api/employees', {
+                'first_name': this.form.first_name,
+                'middle_name': this.form.middle_name,
+                'last_name': this.form.last_name,
+                'address': this.form.address,
+                'department_id': this.form.department_id,
+                'country_id': this.form.country_id,
+                'state_id': this.form.state_id,
+                'city_id': this.form.city_id,
+                'zip_code': this.form.zip_code,
+                'date_of_birth': this.format_date(this.form.date_of_birth),
+                'date_hired': this.format_date(this.form.date_hired),
+            }).then(res => {
+                console.log(res);
+            })
+        },
+        format_date(value) {
+            if (value) {
+                return moment(String(value)).format('YYYYMMDD')
+            }
         }
-    }
+    },
 }
 </script>
 

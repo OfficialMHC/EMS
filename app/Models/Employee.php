@@ -9,4 +9,24 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Employee extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+        'first_name',
+        'middle_name',
+        'last_name',
+        'address',
+        'department_id',
+        'country_id',
+        'state_id',
+        'city_id',
+        'zip_code',
+        'date_of_birth',
+        'date_hired',
+        'status',
+    ];
+
+    public function department()
+    {
+        return $this->belongsTo('App\Models\Department');
+    }
 }
