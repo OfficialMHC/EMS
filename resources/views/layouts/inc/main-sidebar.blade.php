@@ -80,18 +80,6 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ Request::is('permissions*') ? 'active' : '' }}">
-                        <a href="">
-                            <i class="fa fa-circle-o"></i>
-                            Permission
-                        </a>
-                    </li>
-                    <li class="{{ Request::is('roles*') ? 'active' : '' }}">
-                        <a href="">
-                            <i class="fa fa-circle-o"></i>
-                            Role
-                        </a>
-                    </li>
                     <li class="{{ Request::is('users*') ? 'active' : '' }}">
                         <a href="{{ route('users.index') }}">
                             <i class="fa fa-circle-o"></i>
