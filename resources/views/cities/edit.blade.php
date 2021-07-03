@@ -34,7 +34,7 @@
                                 <label for="state_id" class="col-sm-2 control-label">State Name</label>
 
                                 <div class="col-sm-10">
-                                    <select name="state_id" id="state_id" class="form-control select2" style="width: 100%" required>
+                                    <select name="state_id" id="state_id" class="form-control" style="width: 100%" required>
                                         <option value="" disabled selected>--- Select Country ---</option>
                                         @foreach($states as $state)
                                             <option value="{{ $state->id }}" {{ $state->id == $city->state_id ? 'selected' : '' }}>{{ $state->state_name }}</option>
