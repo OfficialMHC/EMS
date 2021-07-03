@@ -21,7 +21,21 @@
                         <div class="box-header with-border">
                             <div class="row">
                                 <div class="col-xs-12 col-sm-6">
-                                    <h3 class="box-title" style="padding-top: 6px"><i class="fa fa-search"></i> View Employee List</h3>
+                                    <div class="box-tools">
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <select v-model="selectedDepartment" @change="getDepartments()" name="department_id" id="department_id" class="form-control" style="width: 100%" required>
+                                                        <option value="" selected disabled>--- Select Department ---</option>
+                                                        <option v-for="department in departments" :key="department.id" :value="department.id">{{ department.department_name }}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="search" v-model.lazy="search" class="form-control pull-right" placeholder="Search">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 text-right">
                                     <router-link :to="{name: 'EmployeesCreate'}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i></router-link>
@@ -104,18 +118,41 @@
                 employees: [],
                 showMessage: false,
                 message: '',
+                search: null,
+                selectedDepartment: null,
+                departments: [],
+            }
+        },
+        watch: {
+            search() {
+                this.getEmployees();
+            },
+            selectedDepartment() {
+                this.getEmployees();
             }
         },
         created() {
             this.getEmployees();
+            this.getDepartments();
         },
         methods: {
             getEmployees() {
-                axios.get('/api/employees')
+                axios.get('/api/employees', {params: {
+                        search: this.search,
+                        department_id: this.selectedDepartment
+                    }})
                     .then(res => {
                         this.employees = res.data.data
                     }).catch(error => {
                         console.log(error);
+                })
+            },
+            getDepartments() {
+                axios.get('/api/employees/departments')
+                    .then(res => {
+                        this.departments = res.data
+                    }).catch(error => {
+                    console.log(console.error)
                 })
             },
             deleteEmployee(id) {
