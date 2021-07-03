@@ -53,9 +53,9 @@
                                         </td>
                                         <td>{{ employee.department.department_name }}</td>
                                         <td>
-                                            {{ employee.address }}, {{ employee.zip_code }}, {{ employee.city.city_name }},
+                                            {{ employee.address }}, {{ employee.zip_code }},
                                             <br>
-                                            {{ employee.state.state_name }}, {{ employee.country.country_name }}
+                                            {{ employee.city.city_name }}, {{ employee.state.state_name }}, {{ employee.country.country_name }}
                                         </td>
                                         <td>{{ employee.date_of_birth }}</td>
                                         <td>{{ employee.date_hired }}</td>
