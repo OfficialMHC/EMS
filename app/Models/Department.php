@@ -11,4 +11,9 @@ class Department extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
+
+    public function employees()
+    {
+        return $this->hasMany('App\Models\Employees');
+    }
 }

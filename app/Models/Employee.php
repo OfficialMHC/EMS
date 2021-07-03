@@ -29,4 +29,19 @@ class Employee extends Model
     {
         return $this->belongsTo('App\Models\Department');
     }
+
+    public function country()
+    {
+        return $this->belongsTo('App\Models\Country');
+    }
+
+    public function state()
+    {
+        return $this->belongsTo('App\Models\State');
+    }
+
+    public function city()
+    {
+        return $this->belongsTo('App\Models\City');
+    }
 }
