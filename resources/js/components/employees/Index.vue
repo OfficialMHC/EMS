@@ -11,6 +11,10 @@
 
         <!-- Main content -->
         <section class="content">
+            <div v-if="showMessage" class="callout callout-success alert alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <p>{{ message }}</p>
+            </div>
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
@@ -57,10 +61,14 @@
                                         <td>{{ employee.date_hired }}</td>
                                         <td>{{ employee.status }}</td>
                                         <td>
-                                            <a class="btn btn-xs btn-warning" href=""><i class='fa fa-edit'></i></a>
+                                            <router-link :to="{name: 'EmployeesEdit', params: {id: employee.id}}" class="btn btn-xs btn-warning">
+                                                <i class='fa fa-edit'></i>
+                                            </router-link>
                                         </td>
                                         <td>
-                                            <a class="btn btn-xs btn-danger" href=""><i class='fa fa-trash'></i></a>
+                                            <button @click="deleteEmployee(employee.id)" class="btn btn-xs btn-danger">
+                                                <i class='fa fa-trash'></i>
+                                            </button>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -93,7 +101,9 @@
     export default {
         data() {
             return {
-                employees: []
+                employees: [],
+                showMessage: false,
+                message: '',
             }
         },
         created() {
@@ -107,6 +117,14 @@
                     }).catch(error => {
                         console.log(error);
                 })
+            },
+            deleteEmployee(id) {
+                axios.delete('/api/employees/'+id)
+                    .then(res => {
+                        this.showMessage = true;
+                        this.message = res.data;
+                        this.getEmployees();
+                    })
             }
         }
     }
