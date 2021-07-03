@@ -12,8 +12,4 @@ class Department extends Model
 
     protected $guarded = [];
 
-    public function employees()
-    {
-        return $this->hasMany('App\Models\Employees');
-    }
 }
