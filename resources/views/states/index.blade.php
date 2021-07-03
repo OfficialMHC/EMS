@@ -37,7 +37,7 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div class="table-responsive">
-                            <table id="example1" class="table table-bordered table-striped table-hover">
+                            <table class="table table-bordered table-striped table-hover">
                                 <thead>
                                 <tr>
                                     <th>ID</th>

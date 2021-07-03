@@ -33,7 +33,7 @@
                                 <label for="country_id" class="col-sm-2 control-label">Country Name</label>
 
                                 <div class="col-sm-10">
-                                    <select name="country_id" id="country_id" class="form-control select2" style="width: 100%" required>
+                                    <select name="country_id" id="country_id" class="form-control" style="width: 100%" required>
                                         <option value="" disabled selected>--- Select Country ---</option>
                                         @foreach($countries as $country)
                                             <option value="{{ $country->id }}">{{ $country->country_name }}</option>
